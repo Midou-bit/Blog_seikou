@@ -1,0 +1,57 @@
+<%- include('layouts/header') %>
+<%- include('layouts/navbar') %>
+
+<% if (blogpost) { %>
+<!-- Page Header-->
+<header class="masthead" style="<%= blogpost.image ? 'background-image: url(\'/images/' + blogpost.image + '\')' : 'background-image: url(\'/assets/img/post-bg.jpg\')' %>">
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="post-heading">
+          <h1><%= blogpost.title %></h1>
+          <h2 class="subheading">Détail du post</h2>
+          <span class="meta">
+            Page de détail du post —
+            <% if (blogpost.userid) { %>
+            Posted by <a href="#"><%= blogpost.userid.username %></a>
+            <% } %>
+            on <%= blogpost.datePosted ? blogpost.datePosted.toDateString() : '' %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Post Content-->
+<article class="mb-4">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <p><%= blogpost.body %></p>
+        <% if (blogpost.userid) { %>
+        <span class="meta">Posted by
+          <a href="#">
+            <%= blogpost.userid.username %>
+          </a>
+        </span>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</article>
+<hr />
+<% } else { %>
+<div class="container px-4 px-lg-5 my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <h2>Post introuvable</h2>
+      <p>Ce post n'existe pas ou a été supprimé.</p>
+      <a href="/list" class="btn btn-primary">Retour à la liste</a>
+    </div>
+  </div>
+</div>
+<% } %>
+
+<%- include('layouts/footer') %>
+<%- include('layouts/scripts') %>

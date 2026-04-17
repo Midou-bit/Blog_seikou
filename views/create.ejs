@@ -1,0 +1,67 @@
+<%- include('layouts/header') %>
+<%- include('layouts/navbar') %>
+
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('/assets/img/post-bg.jpg')">
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="page-heading">
+          <h1>Nouveau Post</h1>
+          <span class="subheading">Créez un nouvel article</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content-->
+<main class="mb-4">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+
+        <% if (errors && errors.length > 0) { %>
+          <ul class="list-group mb-4">
+            <% for (var i = 0; i < errors.length; i++) { %>
+              <li class="list-group-item list-group-item-danger"><%= errors[i] %></li>
+            <% } %>
+          </ul>
+        <% } %>
+
+        <p>Vous pouvez créer un nouveau post</p>
+        <form id="createForm" action="/posts/store" method="POST" enctype="multipart/form-data">
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <label>Title</label>
+              <input type="text" class="form-control" placeholder="Enter your title..." data-sb-validations="required"
+                id="title" name="title" value="<%= title %>">
+              <div class="invalid-feedback" data-sb-feedback="title:required">A title is required.</div>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <label>Description</label>
+              <textarea class="form-control" placeholder="Enter your description here..." style="height: 12rem"
+                data-sb-validations="required" id="description" name="body"><%= body %></textarea>
+              <div class="invalid-feedback" data-sb-feedback="description:required">A description is required.</div>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls mb-0 pb-2">
+              <label>Image</label>
+              <input type="file" class="form-control" id="image" name="image">
+            </div>
+          </div>
+          <br />
+          <div class="d-grid">
+            <button class="btn btn-primary btn-xl" id="submitButton" type="submit">CREATE</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('layouts/footer') %>
+<%- include('layouts/scripts') %>

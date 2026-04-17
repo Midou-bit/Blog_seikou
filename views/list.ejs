@@ -1,0 +1,60 @@
+<%- include('layouts/header') %>
+<%- include('layouts/navbar') %>
+
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('/assets/img/home-bg.jpg')">
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="page-heading">
+          <h1><%= title %></h1>
+          <span class="subheading">Tous les articles disponibles</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+  <div class="row gx-4 gx-lg-5 justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-7">
+
+      <% if (blogposts && blogposts.length > 0) { %>
+        <% for (var i = 0; i < blogposts.length; i++) { %>
+          <!-- Post preview-->
+          <div class="post-preview">
+            <% if (blogposts[i].image) { %>
+            <div class="post-thumbnail">
+              <a href="/post/<%= blogposts[i]._id %>">
+                <img src="/images/<%= blogposts[i].image %>" alt="<%= blogposts[i].title %>" />
+              </a>
+            </div>
+            <% } %>
+            <div class="post-content">
+              <a href="/post/<%= blogposts[i]._id %>">
+                <h2 class="post-title"><%= blogposts[i].title %></h2>
+                <h3 class="post-subtitle"><%= blogposts[i].body %></h3>
+              </a>
+              <% if (blogposts[i].userid) { %>
+              <p class="post-meta">
+                Posted by
+                <a href="#"><%= blogposts[i].userid.username %></a>
+                on <%= blogposts[i].datePosted.toDateString() %>
+              </p>
+              <% } %>
+            </div>
+          </div>
+          <!-- Divider-->
+          <hr class="my-4" />
+        <% } %>
+      <% } else { %>
+        <p class="text-center text-muted mt-5">Aucun post disponible pour l'instant.</p>
+      <% } %>
+
+    </div>
+  </div>
+</div>
+
+<%- include('layouts/footer') %>
+<%- include('layouts/scripts') %>

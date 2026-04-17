@@ -1,0 +1,39 @@
+<%- include('layouts/header') %>
+<%- include('layouts/navbar') %>
+
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('/assets/img/home-bg.jpg')">
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="site-heading">
+          <h1>Mon Blog</h1>
+          <span class="subheading">Un blog MongoDB avec NodeJS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+  <div class="row gx-4 gx-lg-5 justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-7">
+      <div class="my-5 text-center">
+        <h2>Bienvenue sur mon blog</h2>
+        <p class="lead">
+          Découvrez les derniers articles publiés par notre communauté.
+          <% if (!loggedIn) { %>
+          <a href="/auth/register">Inscrivez-vous</a> ou <a href="/auth/login">connectez-vous</a> pour publier un article.
+          <% } else { %>
+          <a href="/post/new">Créez un nouveau post</a> ou consultez la <a href="/list">liste des posts</a>.
+          <% } %>
+        </p>
+        <a href="/list" class="btn btn-primary btn-lg">Voir tous les posts</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('layouts/footer') %>
+<%- include('layouts/scripts') %>
